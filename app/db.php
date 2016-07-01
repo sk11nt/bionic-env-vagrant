@@ -7,3 +7,6 @@ $options = array(
 );
 
 $dbh = new PDO($dsn, $username, $password, $options);
+
+$stm = $dbh->query("SELECT * FROM user;");
+$users = $stm->fetchAll(PDO::FETCH_CLASS, '\Bionic\Models\User');
