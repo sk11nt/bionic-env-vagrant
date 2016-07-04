@@ -1,1 +1,6 @@
-# bionic-env-vagrant
+# Install instructions
+
+*download*
+- VirtualBox https://www.virtualbox.org/wiki/Downloads
+- Vagrant https://www.vagrantup.com/downloads.html
+- **for Windows 10** MS Visual C++ 2010 SP1  https://www.microsoft.com/en-us/download/details.aspx?id=8328
