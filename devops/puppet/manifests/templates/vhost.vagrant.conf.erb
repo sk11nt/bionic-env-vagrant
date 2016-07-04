@@ -14,9 +14,10 @@ server {
   }
 
   location ~ \.php$ {
+    include /etc/nginx/fastcgi_params;
     fastcgi_pass unix:/run/php/php7.0-fpm.sock;
     fastcgi_index index.php;
-    include /etc/nginx/fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME /var/vagrant/app/$fastcgi_script_name;
   }
 
   access_log            /var/log/nginx/bionic.vagrant.access.log;
