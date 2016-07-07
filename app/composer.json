@@ -1,5 +1,13 @@
 {
     "require": {
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "symfony/yaml": "^3.1"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-0": {
+            "Bionic":        "src/",
+            "Bionic\\Tests": "tests/"
+        }
     }
 }

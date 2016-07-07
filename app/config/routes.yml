@@ -1,0 +1,7 @@
+home:
+  class: '\Bionic\Controller\MainController'
+  method: 'index'
+
+homepage:
+  class: '\Bionic\Controller\MainController'
+  method: 'index123'

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bionic\Models;
+namespace Bionic\Model;
 
 
 class User
