@@ -17,4 +17,17 @@ class MainController
 //        $user = (new User())->getUserById($_GET['id']);
         return $user;
     }
+    
+    public function deleteComment(int $commentId){
+        /** @var Comment $comment */
+        $comment = CommentRepository::getOneById();
+        
+        $user = $comment->getUser();
+        
+        $user->deleteComment($comment->getId());
+        
+//        UserRepository::saveUser($user);
+        CommentRepository::deleteById($commentId);
+        
+    }
 }

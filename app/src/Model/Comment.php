@@ -3,7 +3,7 @@
 namespace Bionic\Model;
 
 
-use Bionic\Model\Repository\User;
+use \Bionic\Model\User;
 
 class Comment
 {
@@ -13,9 +13,9 @@ class Comment
     private $id;
 
     /**
-     * @var int
+     * @var User
      */
-    private $user_id;
+    private $user;
 
     /**
      * @var string
@@ -39,34 +39,6 @@ class Comment
     }
 
     /**
-     * @return int
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
-    }
-
-    /**
-     * @param int $user_id
-     */
-    public function setUserId(int $user_id)
-    {
-        $this->user_id = $user_id();
-    }
-    
-    public function getUser()
-    {
-        return User::getUserByCVId($this->getId());
-    }
-    
-    public function setUser(User $user)
-    {
-        $this->setUserId($user->getId());
-        
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getText()
@@ -80,6 +52,22 @@ class Comment
     public function setText($text)
     {
         $this->text = $text;
+    }
+
+    /**
+     * @return \Bionic\Model\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param \Bionic\Model\User $user
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
     }
     
     

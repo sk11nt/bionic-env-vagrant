@@ -2,18 +2,70 @@
 
 namespace Bionic\Model\Repository;
 
+use Bionic\Model\Comment;
+use Bionic\Model\CV;
 use Bionic\Model\User as UserModel;
 
 class User extends AbstractRepository
 {
     /**
      * @param int $id
-     * @return User
+     * @return UserModel
      */
     public static function getOneById(int $id)
     {
-        return new User($id, 'Ivan');
+        $stm = self::query("SELECT * FROM `users` u WHERE u.id = " . $id . "LIMIT 0,1;");
+        $userArr = $stm->fetch();
+
+        $user = new UserModel($userArr['user.id'], $userArr['user.name']);
+//        if (!is_null($userArr['cvs.id'])) {
+//            $cv = new CV($userArr['cv.id'], $user);
+//            $user->setCv($cv);
+//        }
+
+//        $cv = $user->getCv()->getUser()->getCv()->getUser()->getCv();
+
+        return $user;
     }
+
+    /**
+     * @param int $id
+     *
+     * @return UserModel
+     */
+    public function getOneByIdBetterThanPrevious(int $id)
+    {
+        $user = self::getOneById($id);
+
+        /** @var CV $cv */
+        $cv = CVRepository::getOneByUserId($user->getId());
+        $user->setCv($cv);
+
+        /** @var Comment[] $comments */
+        $comments = CommentsRepository::getAllByUserId($user->getId());
+        $user->setComments($comments);
+
+        $users = static::getAllByUserId($user->getId());
+        $user->setUsers($users);
+
+        return $user;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return UserModel[]
+     */
+    public static function getAllByUserId(int $id) : array
+    {
+        $stm = static::query("
+          SELECT * 
+          FROM `ref_users_users` ruu 
+          LEFT JOIN `users` u 
+          ON ruu.user_id_1 = u.id 
+          WHERE ruu.user_id_2 = " . $id . ";");
+    }
+
 
     /**
      * @param int $id
