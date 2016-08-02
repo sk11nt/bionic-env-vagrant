@@ -1,7 +1,8 @@
 {
     "require": {
         "doctrine/dbal": "^2.5",
-        "symfony/yaml": "^3.1"
+        "symfony/yaml": "^3.1",
+        "twig/twig": "^1.24"
     },
     "minimum-stability": "stable",
     "autoload": {

@@ -5,3 +5,15 @@ home:
 homepage:
   class: '\Bionic\Controller\MainController'
   method: 'index123'
+
+admin:
+  class: '\Bionic\Controller\AdminController'
+  method: 'index'
+
+login:
+  class: '\Bionic\Controller\AdminController'
+  method: 'login'
+
+logout:
+  class: '\Bionic\Controller\AdminController'
+  method: 'logout'

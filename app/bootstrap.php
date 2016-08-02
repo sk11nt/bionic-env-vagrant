@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once 'vendor/autoload.php';
 
 use Symfony\Component\Yaml\Yaml;
@@ -12,9 +14,7 @@ if (!file_exists($routesConfigFile)) {
 }
 $routes = Yaml::parse(file_get_contents($routesConfigFile), Yaml::PARSE_OBJECT);
 
-//var_dump($routes); die;
-
-if (!$route = $_GET['route'] ?: false) {
+if (!$route = (isset($_GET['route']) ? $_GET['route'] : false)) {
     $route = APP_DEFAULT_ROUTE;
 }
 

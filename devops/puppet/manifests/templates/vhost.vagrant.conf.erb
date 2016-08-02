@@ -2,6 +2,7 @@ server {
 
   server_name           bionic.local;
   root /var/vagrant/app;
+  index index.php;
 
   location / {
     try_files $uri $uri/ =404;

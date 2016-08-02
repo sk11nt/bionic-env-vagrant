@@ -8,13 +8,23 @@ use Bionic\Model\User as UserModel;
 
 class User extends AbstractRepository
 {
+    private $db;
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+//        $this->db = new DataBaseService();
+    }
+
+
     /**
      * @param int $id
      * @return UserModel
      */
     public static function getOneById(int $id)
     {
-        $stm = self::query("SELECT * FROM `users` u WHERE u.id = " . $id . "LIMIT 0,1;");
+        $stm = $this->db->query("SELECT * FROM `users` u WHERE u.id = " . $id . "LIMIT 0,1;");
         $userArr = $stm->fetch();
 
         $user = new UserModel($userArr['user.id'], $userArr['user.name']);

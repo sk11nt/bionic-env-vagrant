@@ -1,0 +1,27 @@
+{% include 'includes/header.twig' %}
+<body>
+<h1>Hello {{ user.getName() }}</h1>
+
+<h4>{{ user.getComments().c.getText() }}</h4>
+
+{% for comment in user.getComments() %}
+    {{ comment.getId() }} <br />
+{% endfor %}
+
+
+
+
+    {% block body %}
+        {% block menu %}
+            {% block mainMenu %}
+            {% endblock %}
+
+            {% block secondaryMenu %}
+            {% endblock %}
+
+        {% endblock %}
+
+    {% endblock %}
+</body>
+
+</html>

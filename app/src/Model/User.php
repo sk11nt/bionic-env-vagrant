@@ -42,6 +42,8 @@ class User
     public function setComments(array $comments)
     {
         $this->comments = $comments;
+
+        return $this;
     }
     
     public function addComment(Comment $comment)
@@ -87,7 +89,7 @@ class User
      * @param $id
      * @param $name
      */
-    public function __construct(int $id, string $name)
+    public function __construct(int $id, string $name, $age = null, $email = null)
     {
         $this->comments = [];
         $this->users = [];
@@ -131,8 +133,14 @@ class User
     {
         $this->name = $name;
     }
-    
-    
-    
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getId() . ":" . $this->getName();
+    }
+
 
 }
